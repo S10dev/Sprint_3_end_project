@@ -1,2 +1,1 @@
-# yatube
-Social web of blogers
+# backend_community_homework
