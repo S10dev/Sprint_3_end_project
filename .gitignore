@@ -17,5 +17,5 @@ __pycache__/
 
 static/
 posts/static/
-
+req.txt
 db.sqlite3
