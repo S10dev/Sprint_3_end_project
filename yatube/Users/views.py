@@ -29,9 +29,7 @@ def Exchange(request):
     if request.method == 'POST':
         form = ExchangeForm(request.POST)
         artist = request.POST.get('artist')
-        try: 
-            obj = Disk.objects.get(artist=artist)
-        except Disk.DoesNotExist:
+        if not Disk.objects.filter(artist=artist).exists():
             return HttpResponse('Нам такой артист не нужен')
 
         if form.is_valid():
@@ -42,10 +40,11 @@ def Exchange(request):
             genre = form.cleaned_data['genre']
             price = form.cleaned_data['price']
             comment = form.cleaned_data['comment']
+            
 
-            send_mail('Обмен диском', f'Добрый день! Меня зовут {name} и я хочу обменяться с вами диском '
-            f'артиста {artist} жанра {genre} с названием {title} по цене {price}. Комментарий: {comment}. Моя почта для связи: {email}',
-            'from@mail.ru', ['to@mail.ru'], fail_silently=False)
+            #send_mail('Обмен диском', f'Добрый день! Меня зовут {name} и я хочу обменяться с вами диском '
+            #f'артиста {artist} жанра {genre} с названием {title} по цене {price}. Комментарий: {comment}. Моя почта для связи: {email}',
+            #'from@mail.ru', ['to@mail.ru'], fail_silently=False)
 
             return HttpResponse('Спасибо!')
 
