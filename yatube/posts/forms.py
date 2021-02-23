@@ -1,10 +1,9 @@
 from django.contrib.auth import get_user_model
-from django import forms
-from .models import Group
+from django.forms import ModelForm
+from .models import Group, Post
 
 
-class PostForm(forms.Form):
-    choices = Group.objects.all()
-    a = ((m,m) for m in choices)
-    group = forms.ChoiceField(choices = a, required = False)
-    text = forms.CharField(max_length=200)
+class PostForm(ModelForm):
+    class Meta:
+        model = Post
+        fields = {'group', 'text'}
