@@ -1,21 +1,17 @@
-{% extends "base.html" %}
-{% block title %}Поиск{% endblock %}
-{% block header %}Поиск{% endblock %}
+{% extends "base.html" %} 
+{% block title %} Последние обновления {% endblock %}
 {% block content %}
-<br>
-<form name = "subject" method="post">{% csrf_token %}
-    <input type = "text" name = "search">
-    <button type="submit" class="btn btn-primary">
-    Найти
-    </button>
-</form>
-<h3>По вашему поисковому запросу "{{ keyword }}" найдены следующие посты в количестве {{ count }}:</h3>
-    {% for post in posts %}
-    <h3>
-        Автор: {{ post.author }}, Дата публикации: {{ post.pub_date|date:"d M Y" }}
-    </h3>
-    <p>{{ post.text|linebreaksbr }}</p>
-    {% if not forloop.last %}<hr>{% endif %}
-    {% endfor %}
 
+<h2> Последние обновления на сайте:</h2>
+    <br>
+{% for post in page %}
+<h3>    
+    Автор: {{ post.author }}, Дата публикации: {{ post.pub_date|date:"d M Y" }}{% if post.group %}, Группа: {{ post.group }}{% endif %}
+</h3>
+<p>{{ post.text|linebreaksbr }}</p>
+___________________________________________________________________________________________________________________________________________
+{% endfor %}
+{% if page.has_other_pages %}
+    {% include "paginator.html" with items=page paginator=paginator %}
+{% endif %}
 {% endblock %}
