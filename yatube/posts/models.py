@@ -26,3 +26,16 @@ class Post(models.Model):
 
     class Meta:
         ordering = ['-pub_date']
+
+
+class Disk(models.Model):
+    artist = models.CharField(max_length=100)
+    new_request = models.CharField(max_length=100)
+    date = models.DateTimeField('date requested', auto_now_add=True)
+
+    def __str__(self):
+        return self.artist
+
+
+    class Meta:
+        ordering = ['-date']

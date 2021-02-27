@@ -1,6 +1,6 @@
 from django.contrib import admin
 
-from .models import Post, Group
+from .models import Post, Group, Disk
 
 
 class PostAdmin(admin.ModelAdmin):
@@ -15,6 +15,17 @@ class GroupAdmin(admin.ModelAdmin):
     search_fields = ("title",)
     list_filter = ("title",) 
     empty_value_display = "-пусто-"
+
+
+class DiskAdmin(admin.ModelAdmin):
+    list_display = ("pk", "artist", 'new_request', 'date')
+    search_fields = ("artist",) 
+    list_filter = ("artist",) 
+    empty_value_display = "-пусто-"
+
+
+
 # при регистрации модели Post источником конфигурации для неё назначаем класс PostAdmin
+admin.site.register(Disk, DiskAdmin)
 admin.site.register(Post, PostAdmin)
 admin.site.register(Group, GroupAdmin)

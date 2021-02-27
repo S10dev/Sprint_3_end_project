@@ -5,8 +5,9 @@
     {% if group %}
     <h1>{{ group }}</h1>
     <p>{{ group.description }}</p>
-    {% endif %}
+    {% else %}
     <h1>Без группы:</h1>
+    {% endif %}
     {% for post in posts %}
     <h3>
         Автор: {{ post.author }}, Дата публикации: {{ post.pub_date|date:"d M Y" }}

@@ -9,10 +9,10 @@
     Найти
     </button>
 </form>
-<h3>По вашему поисковому запросу "{{ keyword }}" найдены следующие посты:</h3>
+<h3>По вашему поисковому запросу "{{ keyword }}" найдены следующие посты в количестве {{ count }}:</h3>
     {% for post in posts %}
     <h3>
-        Автор: {{ post.author.get_full_name }}, Дата публикации: {{ post.pub_date|date:"d M Y" }}
+        Автор: {{ post.author }}, Дата публикации: {{ post.pub_date|date:"d M Y" }}
     </h3>
     <p>{{ post.text|linebreaksbr }}</p>
     {% if not forloop.last %}<hr>{% endif %}
