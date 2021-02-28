@@ -35,12 +35,15 @@ def new_post(request):
 
 
 def group_posts(request, slug):
-    if slug == 'none':
+    if slug == '404':
         group = None  
     else:
         group = get_object_or_404(Group, slug = slug) 
-    posts = Post.objects.filter(group=group)[:12]
-    return render(request, "group.html",{"group": group, "posts": posts})
+    posts = Post.objects.filter(group=group)
+    paginator = Paginator(posts, 10)
+    page_number = request.GET.get('page')
+    page = paginator.get_page(page_number)
+    return render(request, "group.html",{"group": group, "page": page, 'paginator':paginator})
 
 
 def Exchange(request):
@@ -97,6 +100,7 @@ def post_view(request, username, post_id):
             return render(request, 'post.html', {'post':post,'author':author})
     return HttpResponse('User is not found')
 
+
 @login_required()
 def post_edit(request, username, post_id):
     if request.user != User.objects.get(username=username):
@@ -109,6 +113,7 @@ def post_edit(request, username, post_id):
         post.text = form.cleaned_data['text']
         post.group = form.cleaned_data['group']
         post.save()
-        return redirect('/')
-    form = PostForm()
-    return render(request,"new.html", {'form': form, 'method': 'edit'})
+        return redirect(f'/{username}/{post_id}')
+    post = Post.objects.get(id = post_id)
+    form = PostForm(instance=post)
+    return render(request,"new.html", {'form': form, 'method': 'edit', 'post':post})
