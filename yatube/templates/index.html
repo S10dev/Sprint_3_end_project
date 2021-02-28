@@ -6,7 +6,7 @@
     <br>
 {% for post in page %}
 <h3>    
-    Автор: {{ post.author }}, Дата публикации: {{ post.pub_date|date:"d M Y" }}{% if post.group %}, Группа: {{ post.group }}{% endif %}
+    Автор: <a href='/{{ post.author }}/'>@{{ post.author }}</a>, Дата публикации: {{ post.pub_date|date:"d M Y" }}{% if post.group %}, Группа: {{ post.group }}{% endif %}
 </h3>
 <p>{{ post.text|linebreaksbr }}</p>
 ___________________________________________________________________________________________________________________________________________

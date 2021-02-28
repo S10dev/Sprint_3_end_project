@@ -1,0 +1,77 @@
+[33mcommit fe6c15bdf394c9fa3157cec234c818e79f8e52ac[m[33m ([m[1;36mHEAD -> [m[1;32mmain[m[33m, [m[1;31morigin/main[m[33m, [m[1;31morigin/HEAD[m[33m)[m
+Author: Ioann <s10.dev@yandex.ru>
+Date:   Sun Feb 28 09:48:18 2021 +0300
+
+    Little fixes before end of sprint
+
+[33mcommit d24c7a707f5a21fb7208b2005bfedc4b572c9a7e[m
+Author: Ioann <s10.dev@yandex.ru>
+Date:   Sun Feb 28 00:24:33 2021 +0300
+
+    27.02.2021
+
+[33mcommit d26bb8fdc3dd77b20fd64d8b954c9bcadbe04701[m
+Author: Ioann <s10.dev@yandex.ru>
+Date:   Sat Feb 27 16:43:41 2021 +0300
+
+    save
+
+[33mcommit 2680efde7296766467cdfd5bddd8509bf11862c1[m
+Author: Ioann <s10.dev@yandex.ru>
+Date:   Tue Feb 23 08:48:37 2021 +0300
+
+    Final version, tests passed
+
+[33mcommit 88e39cb6e0c5ffb51cb29efbe9e8d9a8d2a60e5a[m
+Author: Ioann <s10.dev@yandex.ru>
+Date:   Tue Feb 23 07:57:42 2021 +0300
+
+    First try before tests
+
+[33mcommit 6e93dae2005d4b06f05d7b76e5e8485ba99004c0[m
+Author: Ioann <s10.dev@yandex.ru>
+Date:   Mon Feb 22 12:51:23 2021 +0300
+
+    Tests has added
+
+[33mcommit 790bbc5f68863ebaa4382ebee916af29bc138c2a[m
+Author: Ioann <s10.dev@yandex.ru>
+Date:   Mon Feb 22 12:40:20 2021 +0300
+
+    small polish
+
+[33mcommit 4100ef6491dbc21e0c169f79378de3ff72090bef[m
+Author: Ioann <s10.dev@yandex.ru>
+Date:   Mon Feb 22 12:09:10 2021 +0300
+
+    SMTP+Exchange
+
+[33mcommit 470b2e203caef7344114d791c897adaa9f98652f[m
+Author: Ioann <s10.dev@yandex.ru>
+Date:   Mon Feb 22 10:12:12 2021 +0300
+
+    added search
+
+[33mcommit 9ccc308dd3c8c3e8677c91c0fbc430421ce0bedd[m
+Author: Ioann <s10.dev@yandex.ru>
+Date:   Sun Feb 21 08:01:55 2021 +0300
+
+    first commit
+
+[33mcommit 739c0522a12b8dfc627216e5ab5d7e4e21b3d4e2[m
+Author: Ioann <s10.dev@yandex.ru>
+Date:   Thu Feb 18 09:28:14 2021 +0300
+
+    passed tests
+
+[33mcommit cd4671d0c4c78233502dcd24a315c755957982c2[m
+Author: Ioann <s10.dev@yandex.ru>
+Date:   Thu Feb 18 06:52:30 2021 +0300
+
+    first download
+
+[33mcommit b10bddce2828ab835ea890214d708536eaad97c2[m
+Author: S10dev <78289740+S10dev@users.noreply.github.com>
+Date:   Mon Feb 1 13:12:31 2021 +0300
+
+    Initial commit

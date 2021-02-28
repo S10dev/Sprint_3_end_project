@@ -95,12 +95,12 @@ def post_view(request, username, post_id):
         if author.username == username:
             post = get_object_or_404(Post, id = post_id)
             return render(request, 'post.html', {'post':post,'author':author})
-    return HttpResponse('User is not finded')
+    return HttpResponse('User is not found')
 
 @login_required()
 def post_edit(request, username, post_id):
     if request.user != User.objects.get(username=username):
-        return HttpResponse('Ошибка доступа')
+        return redirect(f'/{username}/{post_id}')
     if request.method =='POST':
         form = PostForm(request.POST)
         if not form.is_valid():
