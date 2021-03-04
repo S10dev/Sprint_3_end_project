@@ -7,6 +7,7 @@ from .forms import PostForm, ExchangeForm
 from django.contrib.auth.decorators import login_required
 from django.core.paginator import Paginator
 from django.contrib.auth import get_user_model
+from django.http import Http404
 # Create your views here.
 User = get_user_model()
 
@@ -90,7 +91,7 @@ def profile(request, username):
             page_number = request.GET.get('page')
             page = paginator.get_page(page_number)
             return render(request, 'profile.html', {"page":page, "paginator": paginator, 'author': author})
-    return HttpResponse('User is not found')
+    raise Http404
 
  
 def post_view(request, username, post_id):
@@ -98,22 +99,16 @@ def post_view(request, username, post_id):
         if author.username == username:
             post = get_object_or_404(Post, id = post_id)
             return render(request, 'post.html', {'post':post,'author':author})
-    return HttpResponse('User is not found')
+    raise Http404
 
 
 @login_required()
 def post_edit(request, username, post_id):
-    if request.user != User.objects.get(username=username):
-        return redirect(f'/{username}/{post_id}')
-    if request.method =='POST':
-        form = PostForm(request.POST)
-        if not form.is_valid():
-            return render(request,"new.html", {'form': form})
-        post = Post.objects.get(id = post_id)
-        post.text = form.cleaned_data['text']
-        post.group = form.cleaned_data['group']
-        post.save()
-        return redirect(f'/{username}/{post_id}')
-    post = Post.objects.get(id = post_id)
-    form = PostForm(instance=post)
-    return render(request,"new.html", {'form': form, 'method': 'edit', 'post':post})
+    post = get_object_or_404(Post, id = post_id, author__username = username)
+    if request.user.username != post.author.username:
+        return redirect('post', username = username, post_id = post_id)
+    form = PostForm(request.POST or None, instance=post)
+    if form.is_valid():
+        form.save()
+        return redirect('post', username = username, post_id = post_id)
+    return render(request,"new.html", {'form': form, 'edit': True, 'post':post})

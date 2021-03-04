@@ -5,8 +5,10 @@
         <a class="p-2 text-dark" href="{% url 'new_post' %}">Новая запись</a>
         {% endif %}
         <a class="p-2 text-dark" href="{% url 'exchange' %}">Обмен</a>
-        {% if user.is_authenticated %}
+        {% if user.username == '123' %}
         <a class="p-2 text-dark" href="/admin">Админка</a>
+        {% endif %}
+        {% if user.is_authenticated %}
         Пользователь: {{ user.username }}.
         <a class="p-2 text-dark" href="{% url 'password_change' %}">Изменить пароль</a>
         <a class="p-2 text-dark" href="{% url 'logout' %}">Выйти</a>
