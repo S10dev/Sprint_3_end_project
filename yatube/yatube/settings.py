@@ -46,6 +46,7 @@ INSTALLED_APPS = [
     'django.contrib.sites',
     'posts',
     'Users',
+    'sorl.thumbnail',
 ]
 
 SITE_ID = 1
@@ -61,9 +62,12 @@ MIDDLEWARE = [
 ]
 
 ROOT_URLCONF = 'yatube.urls'
+
 STATIC_URL = "/static/" 
 STATIC_ROOT = os.path.join(BASE_DIR, "static")
 
+MEDIA_URL = '/media/'
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 TEMPLATES_DIR = os.path.join(BASE_DIR, "templates")
 TEMPLATES = [
@@ -151,3 +155,9 @@ EMAIL_HOST_USER = "Your_mail"
 EMAIL_HOST_PASSWORD = "Your_password"
 EMAIL_USE_TLS = True
 EMAIL_USE_SSL = False
+
+CACHES = {
+    'default': {
+        'BACKEND': 'django.core.cache.backends.locmem.LocMemCache',
+    }
+}

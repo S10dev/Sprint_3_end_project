@@ -18,7 +18,9 @@ class Post(models.Model):
     pub_date = models.DateTimeField("date published",auto_now_add=True)
     author = models.ForeignKey(User, on_delete=models.CASCADE, related_name="posts")
     group = models.ForeignKey(Group, on_delete=models.SET_NULL, related_name="posts",
-        blank = True, null = True, verbose_name ='Группа')
+        blank = True, null = True, verbose_name ='Группа'
+        )
+    image = models.ImageField(upload_to='posts/', blank=True, null=True)
 
     def __str__(self):
         return str(self.text)
@@ -39,3 +41,18 @@ class Disk(models.Model):
 
     class Meta:
         ordering = ['-date']
+
+
+class Comment(models.Model):
+    post = models.ForeignKey(Post, on_delete = models.CASCADE, related_name="comment")
+    author = models.ForeignKey(User, on_delete = models.CASCADE, related_name = 'comment')
+    text = models.TextField(max_length=100, help_text="Текст комменатрия")
+    created = models.DateTimeField('created', auto_now_add=True)
+
+    class Meta:
+        ordering = ['-id']
+
+    
+class Follow(models.Model):
+    user = models.ForeignKey(User, on_delete = models.CASCADE, related_name='follower')
+    author = models.ForeignKey(User, on_delete = models.CASCADE, related_name ='following')

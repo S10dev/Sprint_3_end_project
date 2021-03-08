@@ -2,20 +2,17 @@
 {% block title %}Записи сообщества {{ group }}{% endblock %}
 {% block header %}{{ group }}{% endblock %}
 {% block content %}
+{% load thumbnail %}
     {% if group %}
-    <h1>{{ group }}</h1>
-    <p>{{ group.description }}</p>
+        <h1>{{ group }}</h1>
+        <p>{{ group.description }}</p>
     {% else %}
-    <h1>Без группы:</h1>
+        <h1>Без группы:</h1>
     {% endif %}
     {% for post in page %}
-    <h3>
-        Автор: {{ post.author }}, Дата публикации: {{ post.pub_date|date:"d M Y" }}
-    </h3>
-    <p>{{ post.text|linebreaksbr }}</p>
-    {% if not forloop.last %}<hr>{% endif %}
+        {% include "post_item.html" with post=post %}
     {% endfor %}
     {% if page.has_other_pages %}
-    {% include "paginator.html" with items=page paginator=paginator %}
+        {% include "paginator.html" with items=page paginator=paginator %}
     {% endif %}
 {% endblock %}
