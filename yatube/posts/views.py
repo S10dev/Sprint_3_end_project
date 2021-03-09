@@ -10,16 +10,18 @@ from django.contrib.auth import get_user_model
 from django.http import Http404
 from django.urls import reverse
 from django.views.decorators.cache import cache_page
+from django.core.cache import cache
 # Create your views here.
 User = get_user_model()
 
 
-@cache_page(20, key_prefix='index_page')
+# @cache_page(20, key_prefix='index_page')
 def index(request):
     post_list = Post.objects.order_by('-pub_date').all()
     paginator = Paginator(post_list, 10)
     page_number = request.GET.get('page')
     page = paginator.get_page(page_number)
+    cache.clear()
     return render(
         request,
         'index.html',

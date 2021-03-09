@@ -30,22 +30,24 @@ ALLOWED_HOSTS = [
     "127.0.0.1",
     "[::1]",
     "testserver",
+    '*',
 ]
 
 
 # Application definition
 
 INSTALLED_APPS = [
+    "django.contrib.staticfiles",
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
-    'django.contrib.staticfiles',
     'django.contrib.flatpages',
     'django.contrib.sites',
     'posts',
     'Users',
+    "debug_toolbar",
     'sorl.thumbnail',
 ]
 
@@ -59,6 +61,11 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    "debug_toolbar.middleware.DebugToolbarMiddleware",
+]
+
+INTERNAL_IPS = [
+    "127.0.0.1",
 ]
 
 ROOT_URLCONF = 'yatube.urls'
@@ -137,8 +144,6 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/2.2/howto/static-files/
 
-STATIC_URL = '/static/'
-
 LOGIN_URL = "/auth/login/"
 LOGIN_REDIRECT_URL = "index" 
 LOGOUT_REDIRECT_URL = "index"
@@ -161,3 +166,7 @@ CACHES = {
         'BACKEND': 'django.core.cache.backends.locmem.LocMemCache',
     }
 }
+
+if DEBUG: 
+    import mimetypes 
+    mimetypes.add_type("application/javascript", ".js", True)
