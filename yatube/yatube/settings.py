@@ -49,6 +49,9 @@ INSTALLED_APPS = [
     'Users',
     "debug_toolbar",
     'sorl.thumbnail',
+    'rest_framework',
+    'rest_framework.authtoken',
+    'api'
 ]
 
 SITE_ID = 1
@@ -67,6 +70,16 @@ MIDDLEWARE = [
 INTERNAL_IPS = [
     "127.0.0.1",
 ]
+
+REST_FRAMEWORK = {
+    'DEFAULT_PERMISSION_CLASSES': [
+        'rest_framework.permissions.IsAuthenticated', 
+    ],
+
+    'DEFAULT_AUTHENTICATION_CLASSES': [
+        'rest_framework.authentication.TokenAuthentication',
+    ]
+}
 
 ROOT_URLCONF = 'yatube.urls'
 
@@ -115,15 +128,6 @@ AUTH_PASSWORD_VALIDATORS = [
     {
         'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator',
     },
-    {
-        'NAME': 'django.contrib.auth.password_validation.MinimumLengthValidator',
-    },
-    {
-        'NAME': 'django.contrib.auth.password_validation.CommonPasswordValidator',
-    },
-    {
-        'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator',
-    },
 ]
 
 
@@ -166,6 +170,8 @@ CACHES = {
         'BACKEND': 'django.core.cache.backends.locmem.LocMemCache',
     }
 }
+
+SETTINGS_PATH = os.path.dirname(os.path.dirname(__file__))
 
 if DEBUG: 
     import mimetypes 
